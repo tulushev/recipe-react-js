@@ -1,0 +1,21 @@
+{
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true
+  },
+  "plugins": [
+    "react"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "rules": {
+    "react/require-extension": 0,
+    "no-else-return": ["error", { "allowElseIf": false }]
+  },
+  "globals": {
+    "Promise": false,
+    "require": false
+  }
+}

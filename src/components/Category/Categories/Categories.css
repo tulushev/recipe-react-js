@@ -1,0 +1,25 @@
+.categoryList {
+  list-style-type: none;
+}
+
+.wrapper {
+  display: flex;
+}
+
+.categoryName {
+  font-weight: 700;
+  color: #000;
+  font-size: 18px;
+  margin-right: 5px;
+}
+
+.categoryDescr {
+  color: #333;
+  font-size: 16px;
+  margin-right: 5px;
+}
+
+.categoryText {
+  color: #333;
+  font-size: 16px;
+}

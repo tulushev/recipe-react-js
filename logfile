@@ -1,0 +1,10 @@
+2018-07-26 11:41:33.742 EEST [61631] FATAL:  lock file "postmaster.pid" already exists
+2018-07-26 11:41:33.742 EEST [61631] HINT:  Is another postmaster (PID 573) running in data directory "/usr/local/var/postgres"?
+2018-07-27 07:38:50.137 EEST [72460] FATAL:  lock file "postmaster.pid" already exists
+2018-07-27 07:38:50.137 EEST [72460] HINT:  Is another postmaster (PID 573) running in data directory "/usr/local/var/postgres"?
+2018-07-27 17:16:14.853 EEST [81325] FATAL:  lock file "postmaster.pid" already exists
+2018-07-27 17:16:14.853 EEST [81325] HINT:  Is another postmaster (PID 573) running in data directory "/usr/local/var/postgres"?
+2018-07-30 07:33:10.770 EEST [9844] FATAL:  lock file "postmaster.pid" already exists
+2018-07-30 07:33:10.770 EEST [9844] HINT:  Is another postmaster (PID 573) running in data directory "/usr/local/var/postgres"?
+2018-07-30 14:10:16.008 EEST [15579] FATAL:  lock file "postmaster.pid" already exists
+2018-07-30 14:10:16.008 EEST [15579] HINT:  Is another postmaster (PID 573) running in data directory "/usr/local/var/postgres"?

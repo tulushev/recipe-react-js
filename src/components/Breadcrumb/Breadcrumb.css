@@ -1,0 +1,9 @@
+.breadcrumb {
+  margin-right: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumbItem {
+  margin: 0 10px;
+}

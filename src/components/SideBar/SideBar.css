@@ -1,0 +1,25 @@
+.sidebar {
+  border-right: 1px solid black;
+  width: 400px;
+  padding: 20px;
+  background-color: beige;
+  margin-right: 40px;
+}
+
+.categoryItem {
+  margin: 10px;
+  color: #333;
+  list-style-type: none;
+}
+
+.categoryItemChildren {
+  margin-left: 25px;
+}
+
+.sidebar a {
+  text-decoration: none;
+}
+
+.categoryItem:hover {
+  color: lightgreen;
+}
