@@ -1,7 +1,14 @@
 import { effects } from 'redux-saga';
-import { get } from '../../utils/api';
+import { get, del } from '../../utils/api';
 
-import { getRecipies, setRecipies, getRecipe, setRecipe } from '../../actions';
+import {
+  getRecipies,
+  setRecipies,
+  getRecipe,
+  setRecipe,
+  fetchDeleteRecipe,
+  setDeleteRecipe
+} from '../../actions';
 
 /* eslint no-console: 0 */
 function* fetchGetRecipies() {
@@ -30,4 +37,18 @@ function* fetchGetRecipe({ payload }) {
 
 export function* fetchGetRecipeFork() {
   yield effects.takeLatest(getRecipe, fetchGetRecipe);
+}
+
+function* fetchToDeleteRecipe({ payload }) {
+  const result = yield effects.call(del, `recipe/delete/${payload}`);
+  console.log('res', result)
+  if (result) {
+    yield effects.put(setDeleteRecipe(result));
+  } else {
+    console.log('Something wrong.');
+  }
+}
+
+export function* fetchToDeleteRecipeFork() {
+  yield effects.takeLatest(fetchDeleteRecipe, fetchToDeleteRecipe);
 }

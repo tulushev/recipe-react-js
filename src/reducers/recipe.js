@@ -1,5 +1,5 @@
 import { createReducer } from 'redux-act';
-import { setRecipies, setRecipe } from '../actions';
+import { setRecipies, setRecipe, setDeleteRecipe } from '../actions';
 
 export const initialState = {
   recipies: [],
@@ -15,6 +15,9 @@ export default createReducer(
     [setRecipe]: (state, payload) => ({
       ...state,
       recipe: payload,
+    }),
+    [setDeleteRecipe]: (state, payload) => (console.log(state.recipies),{
+      ...state,
     }),
   },
   initialState,

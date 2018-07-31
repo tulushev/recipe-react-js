@@ -1,0 +1,17 @@
+.deleteBtn {
+  width: 150px;
+  height: 30px;
+  text-align: center;
+  font-size: 14px;
+  padding: 5px 10px;
+  border: 1px solid red;
+  cursor: pointer;
+}
+
+.btnGroup {
+  margin-left: 20px;
+}
+
+.deleteBtn:hover {
+  background-color: bisque;
+}

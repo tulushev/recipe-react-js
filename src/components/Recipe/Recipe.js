@@ -3,21 +3,25 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 
-import { getRecipe } from '../../actions';
+import { getRecipe, fetchDeleteRecipe } from '../../actions';
 import SideBar from '../SideBar/SideBar';
 
 export class Recipe extends Component {
   constructor(props) {
     super(props);
 
-    this.getRecipe = props.getRecipe;
+    this.getContent = props.getRecipe;
     this.recipe = props.recipe;
+    this.id = props.match.params.id;
   }
 
   componentDidMount() {
-    const { match } = this.props;
+    this.getContent(this.id);
+  }
 
-    this.getRecipe(match.params.id);
+  removeItem = () => {
+    this.props.fetchDeleteRecipe(this.id);
+    this.props.history.goBack('/category');
   }
 
   render() {
@@ -28,23 +32,31 @@ export class Recipe extends Component {
           <p>Title: {this.recipe.name}</p>
           <p>Description: {this.recipe.description}</p>
         </div>
+        <div className='btnGroup'>
+          <button />
+          <button onClick={this.removeItem} className='deleteBtn'>Delete</button>
+        </div>
       </div>
-    )
+    );
   }
 }
 
 Recipe.propTypes = {
   match: PropTypes.object,
   getRecipe: PropTypes.func,
-  recipe: PropTypes.object,
-}
+  fetchDeleteRecipe: PropTypes.func,
+  recipe: PropTypes.object
+};
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ getRecipe }, dispatch,)
+  return bindActionCreators({ getRecipe, fetchDeleteRecipe }, dispatch);
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   recipe: state.recipe.recipe,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Recipe);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Recipe);
