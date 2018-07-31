@@ -12,33 +12,40 @@ class SideBar extends Component {
     this.props.getCategories();
   }
 
-  render() {
-    // if (this.props.categories) {
-    //   return (
-    //     <ul className="sidebar">
-    //       {this.props.categories.map(category => {
-    //         return (
-    //           <div key={category._id}>
-    //             <Link to={`/category/${category._id}`}>
-    //               <li className="categoryItem">{category.name}</li>
-    //             </Link>
-    //             {category.children.map(item => {
-    //               return (
-    //                 <Link key={item._id} to={`/category/${item._id}`}>
-    //                   <li className="categoryItem categoryItemChildren">{item.name}</li>
-    //                 </Link>
-    //               );
-    //             })}
-    //           </div>
-    //         );
-    //       })}
-    //     </ul>
-    //   );
-    // }
+  renderTree = (list) => {
+    const res = [];
 
+    for (let item of list) {
+      {
+        this.renderEl(item);
+      }
+      let nextLvl = item.children;
+      res.push(
+        <div className="categoryItem" key={item._id}>
+          {this.renderEl(item)}
+        </div>,
+      );
+      res.push(
+        <div
+          key={item.children._id}
+          className="categoryItemChildren categoryItem"
+        >
+          {this.renderTree(nextLvl)}
+        </div>,
+      );
+    }
+
+    return res;
+  };
+
+  renderEl = (item) => {
+    return <Link to={`/category/${item._id}`}>{item.name}</Link>;
+  };
+
+  render() {
     return (
-      <div>
-        <Link to="/category">Go to categories</Link>
+      <div className="sidebar">
+        <div>{this.renderTree(this.props.tree)}</div>
       </div>
     );
   }
@@ -46,18 +53,18 @@ class SideBar extends Component {
 
 SideBar.propTypes = {
   getCategories: PropTypes.func,
-  categories: PropTypes.array
+  categories: PropTypes.array,
 };
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ getCategories }, dispatch);
 }
 
-const mapStateToProps = state => ({
-  categories: state.category.categories
+const mapStateToProps = (state) => ({
+  tree: state.category.tree,
 });
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(SideBar);

@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-
-import SideBar from '../components/SideBar/SideBar';
+import { Link } from 'react-router-dom';
 
 class App extends Component {
   render() {
     return (
       <div>
-        <SideBar />
+        <Link to='/category'>Go to categories</Link>
       </div>
     );
   }

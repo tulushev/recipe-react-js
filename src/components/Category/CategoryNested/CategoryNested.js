@@ -3,43 +3,41 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 
-import './CategoryNested.css';
 import Breadcrumb from '../../Breadcrumb/Breadcrumb';
 import Content from '../Content/Content';
+import './CategoryNested.css';
 import { getNestedCategories, getArticleRecipe } from '../../../actions';
+import SideBar from '../../SideBar/SideBar';
 
 class CategoryNested extends Component {
   componentDidMount() {
     const { getNestedCategories, getArticleRecipe, match } = this.props;
     getNestedCategories(match.params.id);
-    console.log('asdasdasd', getArticleRecipe(match.params.id))
     getArticleRecipe(match.params.id);
   }
 
   getSnapshotBeforeUpdate(prevProps) {
-    if (this.props.match && this.props.match.params && this.props.match.params.id) {
-      if (prevProps.match.params.id !== this.props.match.params.id) {
-        this.props.getArticleRecipe(this.props.match.params.id);
+    const { match, getArticleRecipe } = this.props;
+    if (match && match.params && match.params.id) {
+      if (prevProps.match.params.id !== match.params.id) {
+        getArticleRecipe(match.params.id);
       }
     }
-    return this.props.match;
+    return match;
   }
 
-  componentDidUpdate() {
-    console.log(this.props.match)
-  }
+  componentDidUpdate() {}
 
   render() {
-    const { categories, articleRecipeList } = this.props;
-
-    console.log(articleRecipeList)
+    const { match } = this.props;
 
     return (
       <div className="wrapper">
-        <Breadcrumb
-          categories={categories}
-        />
-        <Content contentList={articleRecipeList} />
+        <SideBar />
+        <div>
+          <Breadcrumb bread={match} />
+          <Content />
+        </div>
       </div>
     );
   }

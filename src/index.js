@@ -8,6 +8,7 @@ import App from './containers/App';
 import Categories from './components/Category/Categories/Categories';
 import CategoryNested from './components/Category/CategoryNested/CategoryNested';
 import Recipe from './components/Recipe/Recipe';
+import Article from './components/Article/Article';
 
 import { store, persistor } from './store';
 
@@ -18,11 +19,12 @@ ReactDOM.render(
     <Provider store={store}>
       <BrowserRouter>
         <Switch>
-            <Route exact path="/" component={App} />
-            <Route exact path="/category" component={Categories} />
-            <Route path="/category/:id" component={CategoryNested} />
-            <Route path="/content/:id" component={Recipe} />
-            <Route component={FourOhFour} />
+          <Route exact path="/" component={App} />
+          <Route exact path="/category" component={Categories} />
+          <Route path="/category/:id" component={CategoryNested} />
+          <Route path="/recipe/:id" component={Recipe} />
+          <Route path="/article/:id" component={Article} />
+          <Route component={FourOhFour} />
         </Switch>
       </BrowserRouter>
     </Provider>

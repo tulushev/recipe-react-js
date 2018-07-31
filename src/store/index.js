@@ -22,6 +22,6 @@ let persistor = persistStore(store);
 
 sagaMiddleware.run(sagas);
 
-// persistor.purge();
+persistor.purge();
 
 export { store, persistor };

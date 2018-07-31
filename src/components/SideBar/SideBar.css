@@ -13,7 +13,19 @@
 }
 
 .categoryItemChildren {
-  margin-left: 25px;
+  margin-left: 15px;
+}
+
+.categoryItemChildren a {
+  position: relative;
+  display: inline-block;
+}
+
+.categoryItemChildren a::after {
+  content: "--";
+  position: absolute;
+  left: -10px;
+  transform: translate(-50%);
 }
 
 .sidebar a {

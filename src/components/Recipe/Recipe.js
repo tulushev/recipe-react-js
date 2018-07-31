@@ -3,22 +3,31 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 
-import { getRecipe, getArticle } from '../../actions';
+import { getRecipe } from '../../actions';
+import SideBar from '../SideBar/SideBar';
 
-class Recipe extends Component {
+export class Recipe extends Component {
+  constructor(props) {
+    super(props);
+
+    this.getRecipe = props.getRecipe;
+    this.recipe = props.recipe;
+  }
+
   componentDidMount() {
-    const { match, getRecipe } = this.props;
+    const { match } = this.props;
 
-    getRecipe(match.params.id);
+    this.getRecipe(match.params.id);
   }
 
   render() {
-    const { recipe } = this.props;
-
     return (
-      <div>
-        <p>Title: {recipe.name}</p>
-        <p>Description: {recipe.description}</p>
+      <div className='wrapper'>
+        <SideBar />
+        <div>
+          <p>Title: {this.recipe.name}</p>
+          <p>Description: {this.recipe.description}</p>
+        </div>
       </div>
     )
   }
@@ -31,11 +40,11 @@ Recipe.propTypes = {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ getRecipe, getArticle }, dispatch,)
+  return bindActionCreators({ getRecipe }, dispatch,)
 }
 
 const mapStateToProps = (state) => ({
-  recipe: state.recipe.recipe
+  recipe: state.recipe.recipe,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Recipe);
